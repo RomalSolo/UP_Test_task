@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     public function adminHome()
     {
-        $posts = Contact::all();
+        $posts = Contact::orderBy('id', 'DESC')->get();
 //        dd($posts);
         return view('adminHome', compact("posts"));
     }
