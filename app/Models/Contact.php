@@ -26,6 +26,7 @@ class Contact extends Model
         'subject',
         'message',
         'fileurl',
+        'status',
     ];
 
 }

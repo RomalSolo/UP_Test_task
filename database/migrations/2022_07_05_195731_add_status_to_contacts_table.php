@@ -15,7 +15,7 @@ class AddSentToContactsTable extends Migration
     {
         Schema::table('contacts', function (Blueprint $table) {
             Schema::table('contacts', function (Blueprint $table) {
-                $table->boolean('sent');
+                $table->boolean('status');
             });
         });
     }

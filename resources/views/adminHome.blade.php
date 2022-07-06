@@ -17,7 +17,9 @@
                             <div>Повідомлення: {{ $post->message }}</div>
                             <div><a href="{{ $post->fileurl }}">{{ $post->fileurl }}</a></div>
                             <div>Дата: {{ $post->created_at }}</div>
-                            <div>Оброблено: <input type="checkbox" value="{{ $post->sent }}"></div>
+                            <div>
+                                <label>Оброблено: <input data-id="{{$post->id}}" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{ $post->status ? 'checked' : '' }} value="{{$post->status}}"></label>
+                            </div>
                             <hr>
                         @endforeach
                     </div>
@@ -25,4 +27,23 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function() {
+            $('.toggle-class').change(function() {
+                var status = $(this).prop('checked') == true ? 1 : 0;
+                var id = $(this).data('id');
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: '/changeStatus/',
+                    data: {'status': status, 'id': id},
+                    success: function(data){
+                        console.log(data.success)
+                    }
+                });
+            })
+        })
+    </script>
 @endsection
+

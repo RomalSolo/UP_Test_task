@@ -41,7 +41,17 @@ class HomeController extends Controller
     {
         $posts = Contact::all();
 //        dd($posts);
-        return view('adminHome', [ "posts" => $posts ]);
+        return view('adminHome', compact("posts"));
+    }
+
+    public function changeStatus(Request $request)
+    {
+        $contact = Contact::find($request->id);
+//        dd($contact);
+        $contact->status = $request->status;
+        $contact->save();
+
+        return response()->json(['success'=>'Status change successfully.']);
     }
 
     public function send_mail(Request $request)
@@ -77,4 +87,5 @@ class HomeController extends Controller
 
         return redirect()->back()->with('status', 'Ваше повідомлення відпавлено');
     }
+
 }
