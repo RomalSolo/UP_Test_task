@@ -78,6 +78,7 @@ class HomeController extends Controller
             'message' => $request['message'],
             'attachment' => $request->file('attachment')->store('contact', 'public'),
             'fileurl' => Storage::url($request->file('attachment')->store('contact', 'public')),
+            'status' => 0,
         ];
 
 //        dd($contactDb);
